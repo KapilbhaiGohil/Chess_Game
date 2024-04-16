@@ -59,7 +59,8 @@ function rookWalkImplementation(temp,turn,i,j){
         if(temp[i][k].name===''){
             temp[i][k].name = turn+'highlight';
         }else if(isEnemy(turn,temp[i][k])){
-            temp[i][k].kill = turn+'kill';break;
+            temp[i][k].kill = turn+'kill';
+            break;
         }else{
             break;
         }
@@ -78,8 +79,7 @@ function rookWalkImplementation(temp,turn,i,j){
             temp[k][j].name = turn+'highlight';
         }else if(isEnemy(turn,temp[k][j])){
             temp[k][j].kill = turn+'kill';
-        }else if(isEnemy(turn,temp[k][j])){
-            temp[k][j].kill = turn+'kill';break;
+            break;
         }else{
             break;
         }
@@ -152,8 +152,8 @@ function bishopWalkImplementation(temp,turn,i,j){
 }
 export function rookClick(grid, setGrid, i, j, dist, turn, setActive, active) {
     let temp = [...grid];
+    temp = removeHighlight(temp, turn);
     if (active.i === i && active.j === j) {
-        temp = removeHighlight(temp, turn);
         setActive({ name: '', i: -1, j: -1 });
     } else {
         temp = rookWalkImplementation(temp,turn,i,j)
@@ -163,6 +163,7 @@ export function rookClick(grid, setGrid, i, j, dist, turn, setActive, active) {
 }
 export function bishopClick(grid, setGrid, i, j, dist, turn, setActive, active){
     let temp = [...grid];
+    temp = removeHighlight(temp, turn);
     if (active.i === i && active.j === j) {
         temp = removeHighlight(temp, turn);
         setActive({ name: '', i: -1, j: -1 });
@@ -174,6 +175,7 @@ export function bishopClick(grid, setGrid, i, j, dist, turn, setActive, active){
 }
 export function queenClick(grid, setGrid, i, j, dist, turn, setActive, active){
     let temp = [...grid];
+    temp = removeHighlight(temp, turn);
     if (active.i === i && active.j === j) {
         temp = removeHighlight(temp, turn);
         setActive({ name: '', i: -1, j: -1 });
@@ -186,6 +188,7 @@ export function queenClick(grid, setGrid, i, j, dist, turn, setActive, active){
 }
 export function knightClick(grid, setGrid, i, j, dist, turn, setActive, active){
     let temp = [...grid];
+    temp = removeHighlight(temp, turn);
     if (active.i === i && active.j === j) {
         temp = removeHighlight(temp, turn);
         setActive({ name: '', i: -1, j: -1 });
@@ -255,6 +258,7 @@ export function knightClick(grid, setGrid, i, j, dist, turn, setActive, active){
 
 export function kingClick(grid, setGrid, i, j, dist, turn, setActive, active){
     let temp = [...grid];
+    temp = removeHighlight(temp, turn);
     if (active.i === i && active.j === j) {
         temp = removeHighlight(temp, turn);
         setActive({ name: '', i: -1, j: -1 });
