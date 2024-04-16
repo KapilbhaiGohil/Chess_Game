@@ -1,24 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useContext } from "react";
+import Chess from "./Components";
+import { ChessContext, ChessContextProvider } from "./Context";
+import './chess.scss'
 function App() {
+  const {turn} = useContext(ChessContext)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+          <div style={turn=='a'? {background:"#276982"}:{background:"#8c7134"}} className="chess">
+              <Chess/>
+          </div>
+    </>
   );
 }
 

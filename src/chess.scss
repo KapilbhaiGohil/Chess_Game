@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.chess{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: all 0.3s ease-in-out;
+}
+.chess-outer{
+    .chess-row-outer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .chess-box-outer{
+            width: 4rem;
+            height: 4rem;
+            border: 1px solid black;
+            position: relative;
+            img{
+                position: absolute;
+                width: 4rem;
+                scale: 0.9;
+                cursor: pointer;
+            }
+            .aimg{
+                rotate: 180deg;
+            }
+            .kill-div{
+                position: absolute;
+                inset: 0;
+                background: red;
+                opacity: 0.5;
+                cursor: pointer;
+            }
+        }
+    }
+}
+@media (max-width:527px) {
+    .chess-box-outer{
+        width: calc(100vw/8) !important;
+        height:  calc(100vw/8) !important;
+        img{
+            width: calc(100vw/8) !important;
+        }
+    }
+}
