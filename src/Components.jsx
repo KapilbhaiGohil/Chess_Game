@@ -15,7 +15,7 @@ import bbishop from './images/b/bbishop.png'
 import bhighlight from './images/b/bh.png'
 
 import { bishopClick, highlightClick, kingClick, knightClick, pawnClick, queenClick, rookClick } from './function'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ChessContext } from './Context'
 import { useSearchParams } from 'react-router-dom'
 
@@ -40,6 +40,9 @@ export function ChessBoxRow({row,rowindex}){
 
 export function ChessBoxWithImage({rowindex,index,element}){
     const {grid,setGrid,active,setActive,turn,setTurn} = useContext(ChessContext);
+    const [aclass,setAclass] = useState('aimg');
+    const [bclass,setBclass] = useState('bimg');
+
     let tempInd = index;
     if(rowindex%2===0){tempInd++;}
     function checkTurn(expected){
@@ -50,71 +53,80 @@ export function ChessBoxWithImage({rowindex,index,element}){
             return false;
         }
     }
+    useEffect(()=>{
+        if(aclass.length > 5){
+            setAclass('aimg');
+            setBclass('bimg');
+        }else{
+            setAclass('aimg rot');
+            setBclass('bimg rot');
+        }
+    },[turn])
     return(
         <>
             <div style={tempInd%2===0?{background:"black"}:{background:"rgb(235 223 208)   "}}  className="chess-box-outer">
                 {element.name.length!==0 &&
                     <>
                         {/* player a render */}
-                        {element.name==='apawn' && <img className='aimg' onClick={()=>{
+                        {element.name==='apawn' && <img className={aclass} onClick={()=>{
                             if(checkTurn('a')){
                                 pawnClick(grid,setGrid,rowindex,index,1,'a',setActive,active)
                             }
                             }} src={apawn}/>}
-                        {element.name==='arook' && <img className='aimg' onClick={()=>{
+                        {element.name==='arook' && <img className={aclass} onClick={()=>{
                             if(checkTurn('a')){
                                 rookClick(grid,setGrid,rowindex,index,1,'a',setActive,active)}} 
                             }
                             src={arook}/>}
-                        {element.name==='aknight' && <img className='aimg' onClick={()=>{
+                        {element.name==='aknight' && <img className={aclass} onClick={()=>{
                             if(checkTurn('a')){
                                 knightClick(grid,setGrid,rowindex,index,1,'a',setActive,active)}}  
                             }
                             src={aknight}/>}
-                        {element.name==='abishop' && <img className='aimg' onClick={()=>{
+                        {element.name==='abishop' && <img className={aclass} onClick={()=>{
                             if(checkTurn('a')){
                                 bishopClick(grid,setGrid,rowindex,index,1,'a',setActive,active)}} 
                              }
                             src={abishop}/>}
-                        {element.name==='aking' && <img className='aimg' onClick={()=>{
+                        {element.name==='aking' && <img className={aclass} onClick={()=>{
                             if(checkTurn('a')){
                                 kingClick(grid,setGrid,rowindex,index,1,'a',setActive,active)}} 
                              }
                             src={aking}/>}
-                        {element.name==='aqueen' && <img className='aimg' onClick={()=>{
+                        {element.name==='aqueen' && <img className={aclass} onClick={()=>{
                             if(checkTurn('a')){
                                 queenClick(grid,setGrid,rowindex,index,1,'a',setActive,active)}}  
                             }
                             src={aqueen}/>}
 
                         {/* player b render */}
-                        {element.name==='bpawn' && <img className='bimg' onClick={()=>{
+                        {element.name==='bpawn' && <img className={bclass} onClick={()=>{
 
                             if(checkTurn('b')){
                                 pawnClick(grid,setGrid,rowindex,index,-1,'b',setActive,active)}} 
                             }
                             src={bpawn}/>}
-                        {element.name==='brook' && <img className='bimg' onClick={()=>{
+                        {element.name==='brook' && <img className={bclass} onClick={()=>{
                             if(checkTurn('b')){
                               rookClick(grid,setGrid,rowindex,index,-1,'b',setActive,active)}} 
                              }
                             src={brook}/>}
-                        {element.name==='bknight' && <img className='bimg' onClick={()=>{
+                        {element.name==='bknight' && <img className={bclass} onClick={()=>{
                             if(checkTurn('b')){
                               knightClick(grid,setGrid,rowindex,index,1,'b',setActive,active)}} 
                              }
                             src={bknight}/>}
-                        {element.name==='bbishop' && <img className='bimg'  onClick={()=>{
+                        {element.name==='bbishop' && <img className={bclass}  onClick={()=>{
                             if(checkTurn('b')){
                               bishopClick(grid,setGrid,rowindex,index,-1,'b',setActive,active)}} 
                              }
                             src={bbishop}/>}
-                        {element.name==='bking' && <img className='bimg' onClick={()=>{
+                        {element.name==='bking' && <img className={bclass} onClick={()=>{
                             if(checkTurn('b')){
                               kingClick(grid,setGrid,rowindex,index,-1,'b',setActive,active)}} 
                              }
                             src={bking}/>}
-                        {element.name==='bqueen' && <img className='bimg' onClick={()=>{
+                        {element.name==='bqueen' && <img className={bclass} onClick={()=>{
                             if(checkTurn('b')){
                                 queenClick(grid,setGrid,rowindex,index,-1,'b',setActive,active)}}  
                              }

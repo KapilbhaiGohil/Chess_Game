@@ -25,9 +25,10 @@
                 width: 4rem;
                 scale: 0.9;
                 cursor: pointer;
+                transition: all 0.4s ease-in-out;
             }
             .aimg{
-                rotate: 180deg;
+                // rotate: 180deg;
             }
             .kill-div{
                 position: absolute;
@@ -38,6 +39,9 @@
             }
         }
     }
+}
+.rot{
+    rotate: 180deg;
 }
 @media (max-width:527px) {
     .chess-box-outer{
